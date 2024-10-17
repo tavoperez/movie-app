@@ -3,7 +3,7 @@ import { MovieMapper } from "../../../infrastructure/mappers/movie.mapper"
 
 export const moviesTopRatedUseCase = async (fetcher) =>{
     try {
-        const topRateData = await fetcher.get('/top_rate');
+        const topRateData = await fetcher.get('/top_rated');
         const topRate = new MovieDBMoviesResponse(
         topRateData.page,
         topRateData.results.map(result => new Result(

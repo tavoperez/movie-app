@@ -34,10 +34,10 @@ export const useMovies = () => {
         setIsLoading(false)
 
          // Imprimir cada resultado individualment
-         console.log('Now Playing Movies:', nowPlayingMovies[1]);
-         console.log('Popular Movies:', popularMovies[1]);
-         console.log('Top Rated Movies:', topRateMovies[2]);
-         console.log('Up Coming Movies:', upComingMovies[3]);
+        //  console.log('Now Playing Movies:', nowPlayingMovies[1]);
+        //  console.log('Popular Movies:', popularMovies[1]);
+        //  console.log('Top Rated Movies:', topRateMovies[2]);
+        //  console.log('Up Coming Movies:', upComingMovies[3]);
     }
     
 
