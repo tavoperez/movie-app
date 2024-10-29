@@ -12,6 +12,7 @@ export const useMovies = () => {
     const [upComing, setUpComing] = useState([])
     const [topRated, setTopRated] = useState([])
     const [popular, setPopular] = useState([])
+    const [popularPageNumber, setPopularPageNumber] = useState(1);
 
     useEffect(() => {
       
@@ -39,6 +40,13 @@ export const useMovies = () => {
         //  console.log('Top Rated Movies:', topRateMovies[2]);
         //  console.log('Up Coming Movies:', upComingMovies[3]);
     }
+
+    const popularNextPage = async () => {
+      const nextPageNumber = popularPageNumber + 1;
+      const popularMovies = await Popular.moviesPopularUseCase(movieDBFetcher, { page: nextPageNumber });
+      setPopular(prev => [...prev, ...popularMovies]);
+      setPopularPageNumber(nextPageNumber);
+    };
     
 
   return {
@@ -46,6 +54,9 @@ export const useMovies = () => {
     nowPlaying,
     topRated,
     popular,
-    upComing
+    upComing,
+
+    // metodos
+    popularNextPage
   }
 }
