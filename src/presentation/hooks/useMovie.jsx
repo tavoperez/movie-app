@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { fullMovie } from '../../core/entities/movie.entity'
 import * as useCase from '../../core/use-case'
 import { movieDBFetcher } from '../../config/adapters/movieDB.adapter'
 
 export const useMovie = (movieId) => {
     const [isLoading, setisLoading] = useState(true)
     const [movie, setMovie] = useState()
+    const [cast, setCast] = useState([]);
 
     useEffect(() => {
         loadMovie()
@@ -15,15 +15,22 @@ export const useMovie = (movieId) => {
       //llamar el caso de uso
       setisLoading(true)
 
-      const fullMovie = await useCase.getMovieByIdUseCase(movieDBFetcher, movieId)
+      const fullMoviePromise = useCase.getMovieByIdUseCase(movieDBFetcher, movieId)
+      const dataCastPromise = useCase.getMovieCastUseCase(movieDBFetcher, movieId)
+
+      const [fullMovie, dataCast] = await Promise.all([fullMoviePromise, dataCastPromise])
+
       setMovie(fullMovie)
+      setCast(dataCast)
+
       setisLoading(false)
-      console.log(fullMovie)
+/*       console.log(dataCast) */
 
     }
     
   return {
-
+    movie,
+    isLoading,
   }
 }
 

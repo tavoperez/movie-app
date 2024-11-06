@@ -28,7 +28,7 @@ export class MovieMapper {
             result.genres ? result.genres.map(genre => genre.name) : [],
             result.duration,
             result.budget,
-            result.originalTitle,
+            result.original_title,
             result.production_companies ? result.production_companies.map(company => company.name) : []
 
 
