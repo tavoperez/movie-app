@@ -8,11 +8,11 @@ export const MovieHeader = ({movie, isloading}) => {
   const navigation = useNavigation()
 
   if (isloading) {
-    return <Text>Cargando</Text>;
+    return <FullScreenLoader/>;
   }
 
   if (!movie) {
-    return <Text>No se encontró la película</Text>;
+    return <Text></Text>;
   }
 
   return (

@@ -8,10 +8,10 @@ import { MovieDetails } from '../../components/movie/MovieDetails'
 export const DetailScreen = () => {
 
   const {movieId} = useRoute().params
-  const {movie, isloading} = useMovie(movieId)
+  const {cast = [],movie, isloading} = useMovie(movieId)
   
-  if (isloading){
-    return <Text>Cargando</Text>
+  if (isloading) {
+    return <FullScreenLoader/>;
   }
 
 
@@ -23,8 +23,8 @@ export const DetailScreen = () => {
         {/* Details */}
         <MovieDetails 
           movie={movie}
-/*           cast={cast}
-          isloading={isloading} */
+          cast={cast}
+          isloading={isloading}
         />
 
     </ScrollView>

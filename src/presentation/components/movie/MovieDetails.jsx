@@ -1,15 +1,17 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { FlatList, Text, View } from 'react-native'
 import { Formatter } from '../../../config/helpers/formatter';
+import { CastActor } from '../cast/CastActor';
+import { FullScreenLoader } from '../loaders/FullScreenLoader';
 
-export const MovieDetails = ({movie, isloading}) => {
+export const MovieDetails = ({movie, cast, isloading}) => {
 
     if (isloading) {
-        return <Text>Cargando</Text>;
+        return <FullScreenLoader/>;
     }
 
     if (!movie) {
-        return <Text>No se encontró informacion de la película</Text>;
+        return <Text></Text>;
     }
 
     // En lugar de hacer console.log de un objeto completo, se pueden mostrar propiedades específicas
@@ -49,13 +51,13 @@ export const MovieDetails = ({movie, isloading}) => {
         </Text>
 
 
-{/*           <FlatList 
+          <FlatList 
             data={ cast }
             keyExtractor={ (item) => item.id.toString() }
             horizontal
             showsHorizontalScrollIndicator={false}
             renderItem={ ({item}) => <CastActor actor={ item } /> }
-          /> */}
+          />
 
 
       </View>
