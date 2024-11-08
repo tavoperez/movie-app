@@ -1,9 +1,8 @@
 import { MovieDBMoviesResponse, Result } from "../../../infrastructure/interfaces/movies-db.responses";
-import { MovieMapper } from "../../../infrastructure/mappers/movie.mapper"
 
-export const moviesUpComingUseCase = async (fetcher) =>{
+export const moviesUpComingUseCase = async (fetcher, {page = 1} = {}) =>{
     try {
-        const upComingData = await fetcher.get('/upcoming');
+        const upComingData = await fetcher.get('/upcoming', {params: {page}});
         const upComing = new MovieDBMoviesResponse(
         upComingData.page,
         upComingData.results.map(result => new Result(

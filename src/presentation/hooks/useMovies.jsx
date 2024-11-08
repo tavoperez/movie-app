@@ -12,10 +12,10 @@ export const useMovies = () => {
     const [upComing, setUpComing] = useState([])
     const [topRated, setTopRated] = useState([])
     const [popular, setPopular] = useState([])
-    const [popularPageNumber, setPopularPageNumber] = useState(1);
+    const [PageNumber, setPageNumber] = useState(1);
 
     useEffect(() => {
-      
+       
       initialLoad()
 
     }, [])
@@ -42,10 +42,24 @@ export const useMovies = () => {
     }
 
     const popularNextPage = async () => {
-      const nextPageNumber = popularPageNumber + 1;
+      const nextPageNumber = PageNumber + 1;
       const popularMovies = await Popular.moviesPopularUseCase(movieDBFetcher, { page: nextPageNumber });
       setPopular(prev => [...prev, ...popularMovies]);
-      setPopularPageNumber(nextPageNumber);
+      setPageNumber(nextPageNumber);
+    };
+
+    const topRateNextPage = async () => {
+      const nextPageNumber = PageNumber + 1;
+      const topRateMovies = await TopRate.moviesTopRatedUseCase(movieDBFetcher, { page: nextPageNumber });
+      setTopRated(prev => [...prev, ...topRateMovies]);
+      setPageNumber(nextPageNumber);
+    };
+
+    const upComingNextPage = async () => {
+      const nextPageNumber = PageNumber + 1;
+      const upComingMovies = await Upcoming.moviesUpComingUseCase(movieDBFetcher, { page: nextPageNumber });
+      setUpComing(prev => [...prev, ...upComingMovies]);
+      setPageNumber(nextPageNumber);
     };
     
 
@@ -57,6 +71,8 @@ export const useMovies = () => {
     upComing,
 
     // metodos
-    popularNextPage
+    popularNextPage,
+    topRateNextPage,
+    upComingNextPage
   }
 }

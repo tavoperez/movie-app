@@ -53,9 +53,9 @@ export const HorizontalCarrousel = ({movies, title, loadNextPage}) => {
             renderItem={({item}) => (
                 <MoviePoster movie={item} width={140} height={200} />
             )}
-            keyExtractor={(item) => item.id.toString()}
+            /* keyExtractor={(item) => item.id.toString()} */
             // en caso de tener peliculas ID duplicadas, solo sirve como una solucion rapida
-            // keyExtractor={(item, index) => `${item.id}-${index}`}
+            keyExtractor={(item, index) => `${item.id}-${index}`}
             horizontal
             showsHorizontalScrollIndicator= {false}
             onScroll= {onScroll}

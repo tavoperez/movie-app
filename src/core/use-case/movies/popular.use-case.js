@@ -1,7 +1,6 @@
 import { MovieDBMoviesResponse, Result } from "../../../infrastructure/interfaces/movies-db.responses";
-import { MovieMapper } from "../../../infrastructure/mappers/movie.mapper"
 
-export const moviesPopularUseCase = async (fetcher, { page = 1 } = {}) => {
+export const moviesPopularUseCase = async (fetcher, { page = 1 } = {}) => { 
     try {
       const PopularData = await fetcher.get('/popular', { params: { page } });
       const popular = new MovieDBMoviesResponse(

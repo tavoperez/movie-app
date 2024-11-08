@@ -1,9 +1,8 @@
 import { MovieDBMoviesResponse, Result } from "../../../infrastructure/interfaces/movies-db.responses";
-import { MovieMapper } from "../../../infrastructure/mappers/movie.mapper"
 
-export const moviesTopRatedUseCase = async (fetcher) =>{
+export const moviesTopRatedUseCase = async (fetcher, { page = 1 } = {}) =>{
     try {
-        const topRateData = await fetcher.get('/top_rated');
+        const topRateData = await fetcher.get('/top_rated', { params: { page } });
         const topRate = new MovieDBMoviesResponse(
         topRateData.page,
         topRateData.results.map(result => new Result(

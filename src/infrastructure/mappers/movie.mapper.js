@@ -3,7 +3,7 @@ import { Movie } from "../../core/entities/movie.entity"
 // implementamos el mapeo
 export class MovieMapper {
     static fromMovieDBResultToEntity(result) {
-        /* console.log('Mapping result prueba:', result); */
+
         return new Movie (
             result.id,
             result.title,
